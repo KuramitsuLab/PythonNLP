@@ -28,4 +28,6 @@ words = [item[0]
 # 頻度順に出力
 counter = Counter(words)
 for word, count in counter.most_common():
-    print('{0} , {1}'.format(word, count))
+    with open('result.csv', 'a', encoding="utf_8_sig") as c:
+        writer = csv.writer(c)
+        writer.writerow('{0} , {1}'.format(word, count))
