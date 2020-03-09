@@ -4,6 +4,7 @@ import MeCab
 import sys
 import re
 import collections
+import csv
 from collections import Counter
 
 mecab = MeCab.Tagger ('/usr/local/lib/mecab/dic/mecab-ipadic-neologd')
@@ -21,10 +22,10 @@ items = (re.split('[\t,]', line) for line in lines)
 words = [item[0]
          for item in items
          if (item[0] not in ('EOS', '', 't', 'ー') and
-             item[1] == '名詞' and item[2] == '一般')]
+             item[1] == '名詞')]
+
 
 # 頻度順に出力
 counter = Counter(words)
 for word, count in counter.most_common():
     print('{0} , {1}'.format(word, count))
-    
